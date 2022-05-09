@@ -2,12 +2,12 @@
 
 ## How to install the game using Docker
 
-Type this command inside a Terminal where your Working directory is the Tetr.io directory.
+Clone the image
 
 ```shell
-$ docker build -t pxlctzn/tetr.io .
+$ docker pull ghcr.io/timelessnesses/tetr.io-image-building:master
 ```
-This command will generate an image named *pxlctzn/tetr.io* but feel free to give it the name you want.
+This command will generate an image named *ghcr.io/timelessnesses/tetr.io-image-building:master*
 
 
 ### Starting the application container.
@@ -16,11 +16,11 @@ If you are looking for the Developer installation instruction then click right [
 
 Now you need to start the container. In this exemple we will name the container *tetr.io*.
 ```shell
-$ docker run -d --name tetr.io -p 8080:80 pxlctzn/tetr.io
+$ docker run -d --name tetr.io-image-building -p 8080:80 ghcr.io/timelessnesses/tetr.io-image-building:master
 ```
 
 Before jumping the game, let's explain what just happened.
-We started a Docker container named *tetr.io* from the *pxlctzn/tetr.io* image. We also forwarded the port 80 from the container to the 8080 of your computer. The -d option is used to detach the container from the Terminal that you are using to call run this command.
+We started a Docker container named *tetr.io-image-building* from the *ghcr.io/timelessnesses/tetr.io-image-building:master* image. We also forwarded the port 80 from the container to the 8080 of your computer. The -d option is used to detach the container from the Terminal that you are using to call run this command.
 
 So now you can play as much as you want by going to [localhost:8080](http://localhost:8080).
 
@@ -33,43 +33,43 @@ Run one of these two command to attach the tetr.io directory to the one on the c
 #### Using the -v option
 ```shell
 $ docker run -d \
-             --name tetr.io \
+             --name tetr.io-image-building \
              -v "$(pwd)":/usr/local/apache2/htdocs/ \
-             pxlctzn/tetr.io
+             ghcr.io/timelessnesses/tetr.io-image-building:master
 ```
 
 With the `-p` option :
 ```shell
 $ docker run -d \
-             --name tetr.io \
+             --name tetr.io-image-building \
              -p 8080:80 \
              -v "$(pwd)":/usr/local/apache2/htdocs/ \
-             pxlctzn/tetr.io
+             ghcr.io/timelessnesses/tetr.io-image-building:master
 ```
 #### Using the --mount option
 ```shell
 $ docker run -d \
-             --name tetr.io \
+             --name tetr.io-image-building \
              --mount type=bind,src="$(pwd)",dst=/usr/local/apache2/htdocs/ \
-             pxlctzn/tetr.io
+             ghcr.io/timelessnesses/tetr.io-image-building:master
 ```
 With the `-p` option :
 ```shell
 $ docker run -d \
-             --name tetr.io \
+             --name tetr.io-image-building \
              -p 8080:80 \
              --mount type=bind,src="$(pwd)",dst=/usr/local/apache2/htdocs/ \
-             pxlctzn/tetr.io
+             ghcr.io/timelessnesses/tetr.io-image-building:master
 ```
 ### Stopping the container
 To **stop** the container just type:
 ```shell
-$ docker stop tetr.io
+$ docker stop tetr.io-image-building
 ```
 ### Delete the container
 If you need to **delete** the container use this command:
 ```shell
-$ docker rm tetr.io
+$ docker rm tetr.io-image-building
 ```
 
 ## Mode
@@ -116,4 +116,6 @@ This is the classic experience (i.e: Marathon mode). No JS server needed, just t
 
 Well... Basically here we follow the [Tetris Guideline](https://tetris.wiki/Tetris_Guideline)
 
-## Multiplayer
+## Credits
+this repo is only for building docker image and clone them in your local machine makes everything faster.  
+thanks for pxlctzn for the repo
